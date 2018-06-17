@@ -29,13 +29,13 @@ gulp.task('vendor', function() {
 
   // Devicons
   gulp.src([
-      './node_modules/devicons/**/*',
-      '!./node_modules/devicons/*.json',
-      '!./node_modules/devicons/*.md',
-      '!./node_modules/devicons/!PNG',
-      '!./node_modules/devicons/!PNG/**/*',
-      '!./node_modules/devicons/!SVG',
-      '!./node_modules/devicons/!SVG/**/*'
+      './node_modules/devicon/**/*',
+      '!./node_modules/devicon/*.json',
+      '!./node_modules/devicon/*.md',
+      '!./node_modules/devicon/!PNG',
+      '!./node_modules/devicon/!PNG/**/*',
+      '!./node_modules/devicon/!SVG',
+      '!./node_modules/devicon/!SVG/**/*'
     ])
     .pipe(gulp.dest('./vendor/devicons'))
 
