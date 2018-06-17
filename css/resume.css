@@ -64,6 +64,13 @@ h2 {
   text-transform: uppercase;
 }
 
+.legal {
+  display: flex;
+  width: 100%;
+  font-size: small;
+  justify-content: center;
+}
+
 @media (min-width: 992px) {
   #sideNav {
     text-align: center;
@@ -100,6 +107,16 @@ h2 {
     display: block;
   }
   #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+    display: block;
+  }
+  #sideNav .navbar-collapse .navbar-nav-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  #sideNav .navbar-collapse .navbar-nav-container .nav-item {
+    display: block;
+  }
+  #sideNav .navbar-collapse .navbar-nav-container .nav-item .nav-link {
     display: block;
   }
 }
