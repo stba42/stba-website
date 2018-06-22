@@ -7,6 +7,11 @@ var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
 
+var ftp = require('vinyl-ftp');
+var gutil = require('gulp-util');
+var minimist = require('minimist');
+var args = minimist(process.argv.slice(2));
+
 // Set the banner content
 var banner = ['/*!\n',
   ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
@@ -135,4 +140,20 @@ gulp.task('dev', ['css', 'js', 'browserSync'], function() {
   gulp.watch('./scss/*.scss', ['css']);
   gulp.watch('./js/*.js', ['js']);
   gulp.watch('./*.html', browserSync.reload);
+});
+
+gulp.task('deploy', function() {
+    var remotePath = '/';
+    var conn = ftp.create({
+        host: 'esm19.siteground.biz',
+        user: args.user,
+        password: args.password,
+        log: gutil.log,
+        parallel: 5,
+        maxConnections: 5,
+        secure: true,
+    });
+    gulp.src(['**/**.*', '!./node_modules/**'])
+        .pipe(conn.newer(remotePath))
+        .pipe(conn.dest(remotePath));
 });

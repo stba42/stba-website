@@ -1,4 +1,4 @@
-os: osx
+sudo: false
 env:
   global:
   - SFTP_USER=stefanbaust@spltscreen.de
@@ -14,5 +14,4 @@ cache:
   directories:
   - node_modules
 after_success:
-- find . -type f -exec curl -u ${SFTP_USER}:${SFTP_PASSWORD} --ftp-create-dirs -T
-  {} sftp://esm19.siteground.biz/{} \;
+- gulp deploy --user $SFTP_USER --password $SFTP_PASSWORD
