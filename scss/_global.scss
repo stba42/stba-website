@@ -5,10 +5,36 @@ body {
   padding-top: 54px;
   color: $gray-600;
 }
+
 @media (min-width: 992px) {
   body {
     padding-top: 0;
     padding-left: $sidebar-base-width;
+  }
+}
+
+body.session {
+  padding-top: 0;
+  background-image: url(/img/vietnam-cityscape-komp.jpg);
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-size: cover;
+}
+
+.session p {
+  color: $gray-800;
+}
+
+.session-content {
+  background: white;
+
+  box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 992px) {
+  body.session {
+    padding-top: 0;
+    padding-left: 0;
   }
 }
 
@@ -40,6 +66,22 @@ h2 {
   font-size: 1.35rem;
 }
 
+.session h1 {
+  font-size: 4rem;
+  line-height: 5.5rem;
+}
+
+.session h2 {
+  font-size: 2rem;
+}
+
+.session .subheading {
+  text-transform: uppercase;
+  font-weight: 500;
+  @include heading-font;
+  font-size: 1.35rem;
+}
+
 .list-social-icons {
   a {
     color: $gray-700;
@@ -58,5 +100,44 @@ h2 {
     &:hover {
       color: $primary;
     }
+  }
+}
+
+//Bootstrap overrides
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 810px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 810px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
