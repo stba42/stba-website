@@ -1,18 +1,18 @@
+sudo: required
 env:
   global:
-  - 'SFTP_USER=stefanbaust@spltscreen.de'
-  - 'SFTP_PASSWORD=[password]'
-sudo:          false
-language:      node_js
+  - SFTP_USER=stefanbaust@spltscreen.de
+  - secure: L4BWhKGMk4PgbEyTCaP7UsoQBRlczpjoSY48tPMP9hNMqsWnXTPRCW8JDrSB/of1H6r3sKgtmwujdnn/IcegTlX26ZfJ+XRk4m/xyENJZ6edpLFx3LQ89MuplQCQy/c72W+45GVxVPmPNWNuvfYXs+6exjbYGWXf+q7MfgGztyP1/MEIRPmNtwIaNsQFLLnWaNLE4246wldiM1QhuC5WT6UmrXeJUEq8a0j5NxFlxs9fr7StmBBZPWvhsQYexNDs6/ycBeeHSbmj98ZNMnKkP+ge6u76uu/mFq2J8OedaIxn7yCrPI7fPyFWmLefEQ/SmA0RCiTrabpcMExRZUxL3y1C6pMA4eVuulh4vmerMZgMY9ngKZyHtPEoL+Itm689RuyUqKNOFjqqYPULbJWjeG9eyC5H+LCA0KnbjgO1jLce1KsjbmzTSITF2Tm0Q5Yccq8/2b/dMn0sbAQEGxRERv+rGO2OrXi6UebkmOE7H8CBQNl/BTZM0HsTKoJ7rVKdtZPMKZbmIzEZsUJ1cOACHibwATZ2tbx1P3hRSZWX/XBPoHmkbjj2iuKjF1B/hp3dbEvi/4uK++fBKY2Ca0qRBcft3cr1ty3mFFo2ZOeI+XZoVSaUZXsbFwevoYr0CW0aAg9e6jfqJlFBUB6q1ZMIXE8hSZ455eRlfY3nqOjbTE4=
+language: node_js
 node_js:
-  - "node"
-install:       npm install
+- node
+install: npm install
 script:
-  - npm test
-  - gulp
+- npm test
+- gulp
 cache:
   directories:
-    - node_modules
+  - node_modules
 after_success:
-- find . -type f -exec curl -u ${SFTP_USER}:${SFTP_PASSWORD} --ftp-create-dirs -T {} sftp://esm19.siteground.biz/{} \;
-
+- find . -type f -exec curl -u ${SFTP_USER}:${SFTP_PASSWORD} --ftp-create-dirs -T
+  {} sftp://esm19.siteground.biz/{} \;
