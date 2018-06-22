@@ -1,3 +1,7 @@
+env:
+  global:
+  - 'SFTP_USER=stefanbaust@spltscreen.de'
+  - 'SFTP_PASSWORD=[password]'
 sudo:          false
 language:      node_js
 node_js:
@@ -9,4 +13,6 @@ script:
 cache:
   directories:
     - node_modules
+after_success:
+- find . -type f -exec curl -u ${SFTP_USER}:${SFTP_PASSWORD} --ftp-create-dirs -T {} sftp://esm19.siteground.biz/{} \;
 
