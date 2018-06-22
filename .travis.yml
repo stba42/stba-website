@@ -14,4 +14,4 @@ cache:
   directories:
   - node_modules
 after_success:
-- gulp deploy --user $SFTP_USER --password $SFTP_PASSWORD
+- test $TRAVIS_BRANCH = "master" && gulp deploy --user $SFTP_USER --password $SFTP_PASSWORD
