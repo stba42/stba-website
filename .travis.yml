@@ -1,4 +1,4 @@
-sudo: required
+os: osx
 env:
   global:
   - SFTP_USER=stefanbaust@spltscreen.de
