@@ -68,8 +68,39 @@ h2 {
   line-height: 5.5rem;
 }
 
+.session h1.inline {
+  font-family: 'Open Sans', serif;
+  text-transform: none;
+  font-size: 2rem;
+  line-height: 2rem;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+h1.highlight {
+  color: #e60e0e;
+}
+
+.fa-li {
+  left: -1.9em;
+  font-size: 1.5rem;
+  color: #006da7;
+}
+
 .session h2 {
   font-size: 2rem;
+}
+
+.session .apply-button {
+  width: 100%;
+  height: auto;
+  background-color: #ffcd48;
+}
+
+.session .btn-text-header {
+  font-family: 'Open Sans', serif;
+  font-size: 1.3rem;
+  text-align: center;
 }
 
 .session .subheading {
