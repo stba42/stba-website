@@ -95,11 +95,26 @@ h1.highlight {
   width: 100%;
   height: auto;
   background-color: #ffcd48;
+  padding: 1rem;
+  box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.2);
 }
 
 .session .btn-text-header {
   font-family: 'Open Sans', serif;
   font-size: 1.3rem;
+  text-align: center;
+}
+
+.apply-button .btn-text-header {
+  font-family: 'Open Sans', serif;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 700;
+  color: #343a40;
+}
+
+.apply-button .btn-text-subheader {
+  font-size: 0.8rem;
   text-align: center;
 }
 
