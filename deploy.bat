@@ -4,5 +4,5 @@ robocopy js/ dist/js/ /s /e
 robocopy private-session/ dist/private-session/ /s /e
 robocopy vendor/ dist/vendor/ /s /e
 copy *.html dist
-ncftpput -R -v -u "stefanbaust@spltscreen.de" esm19.siteground.biz / dist/*
+REM ncftpput -R -v -u "stefanbaust@spltscreen.de" esm19.siteground.biz / dist/*
 TODO TRAVIS-CI
