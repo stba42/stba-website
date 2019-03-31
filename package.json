@@ -38,7 +38,6 @@
     "browser-sync": "2.24.3",
     "gulp": "^3.9.1",
     "gulp-clean-css": "3.9.4",
-    "gulp-ga": "0.0.9",
     "gulp-header": "2.0.5",
     "gulp-remove-html-comments": "^1.0.1",
     "gulp-rename": "^1.2.2",

@@ -11,7 +11,7 @@ var gutil = require('gulp-util');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
 
-var ga = require('gulp-ga');
+var ga = require('./add-ga');
 
 var removeHtmlComments = require('gulp-remove-html-comments');
 
