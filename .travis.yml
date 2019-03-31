@@ -1,17 +1,13 @@
 sudo: false
-env:
-  global:
-  - secure: sswKDmkguTwRKVhgWwgeVJSLC0URy9I9jrmcUusUj2vN/ABlIMHp1/0lirZyxsjw3u/5EQtSWBSMbQk4Xk8hZ308v0vXQWF+FnhDWzklRR9umjoNsgouTPoeQnMfCh9a0W+cg1iM5HGGk2EJzWzWdSI7Qo7UmQSjIZKlP5GPpOs3at8MSzdpjCOK1pukKW5RlIIJCetnROAgicVfP8AyUj48at3PZUfO3wyYBWQZ5T4WMHxrySeJqt679icdOjKRVGUnswEjP1QOGksCBdvAV+YPoTibhHB1CVGThYw7UtMuj21xFwrPhj0JJttryeH19tuB4uKl8Y3iCo1fHIWhjDWbjTe725L1gyKDVhwLRCqypEoi1zqi++R1RKFy/UNK+CGn9DXdbc8+9FI174sgeo2Xi+3h1K8gs825X2MHmPGooAYW0jaZtp1COolR6fw2LlJ4O4xUSovsPoxjkWDa65TgaNCStjjQ2Q+hb0AJQtAazl6Sg/FyXzQdcUoMeOEZ0UJ1WdxVytY6yt8isTdnFYyB2p1sRWo73VEE6Fjd1KwwnsJy16bWp+zGZvqw8qI8BTA6gAYKMoOAGrjWwhBq6Q82N6Rfbef5Z/Ea22v0l4SfQly/0sgWIfFJcOH+ORqzP66C4YkLYcFwO/Q66en+mcgv4F6ZHsMkLUQYm2DuSpI=
-  - secure: L4BWhKGMk4PgbEyTCaP7UsoQBRlczpjoSY48tPMP9hNMqsWnXTPRCW8JDrSB/of1H6r3sKgtmwujdnn/IcegTlX26ZfJ+XRk4m/xyENJZ6edpLFx3LQ89MuplQCQy/c72W+45GVxVPmPNWNuvfYXs+6exjbYGWXf+q7MfgGztyP1/MEIRPmNtwIaNsQFLLnWaNLE4246wldiM1QhuC5WT6UmrXeJUEq8a0j5NxFlxs9fr7StmBBZPWvhsQYexNDs6/ycBeeHSbmj98ZNMnKkP+ge6u76uu/mFq2J8OedaIxn7yCrPI7fPyFWmLefEQ/SmA0RCiTrabpcMExRZUxL3y1C6pMA4eVuulh4vmerMZgMY9ngKZyHtPEoL+Itm689RuyUqKNOFjqqYPULbJWjeG9eyC5H+LCA0KnbjgO1jLce1KsjbmzTSITF2Tm0Q5Yccq8/2b/dMn0sbAQEGxRERv+rGO2OrXi6UebkmOE7H8CBQNl/BTZM0HsTKoJ7rVKdtZPMKZbmIzEZsUJ1cOACHibwATZ2tbx1P3hRSZWX/XBPoHmkbjj2iuKjF1B/hp3dbEvi/4uK++fBKY2Ca0qRBcft3cr1ty3mFFo2ZOeI+XZoVSaUZXsbFwevoYr0CW0aAg9e6jfqJlFBUB6q1ZMIXE8hSZ455eRlfY3nqOjbTE4=
 language: node_js
 node_js:
 - node
 install: npm install
 script:
 - npm test
-- gulp
+- npm run build
 cache:
   directories:
   - node_modules
 after_success:
-- test $TRAVIS_BRANCH = "master" && gulp deploy --user $SFTP_USER --password $SFTP_PASSWORD
+- test $TRAVIS_BRANCH = "master" && gulp deploy

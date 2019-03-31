@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
 
-var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
@@ -35,6 +34,7 @@ gulp.task('vendor', function () {
         '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
     ])
         .pipe(gulp.dest('./vendor/bootstrap'))
+        .pipe(gulp.dest('./dist/vendor/bootstrap'))
 
     // Devicons
     gulp.src([
@@ -47,6 +47,7 @@ gulp.task('vendor', function () {
         '!./node_modules/devicon/!SVG/**/*'
     ])
         .pipe(gulp.dest('./vendor/devicons'))
+        .pipe(gulp.dest('./dist/vendor/devicons'))
 
     // Font Awesome
     gulp.src([
@@ -57,6 +58,7 @@ gulp.task('vendor', function () {
         '!./node_modules/font-awesome/*.{txt,json,md}'
     ])
         .pipe(gulp.dest('./vendor/font-awesome'))
+        .pipe(gulp.dest('./dist/vendor/font-awesome'))
 
     // jQuery
     gulp.src([
@@ -64,23 +66,47 @@ gulp.task('vendor', function () {
         '!./node_modules/jquery/dist/core.js'
     ])
         .pipe(gulp.dest('./vendor/jquery'))
+        .pipe(gulp.dest('./dist/vendor/jquery'))
 
     // jQuery Easing
     gulp.src([
         './node_modules/jquery.easing/*.js'
     ])
         .pipe(gulp.dest('./vendor/jquery-easing'))
+        .pipe(gulp.dest('./dist/vendor/jquery-easing'))
 
     // Simple Line Icons
     gulp.src([
         './node_modules/simple-line-icons/fonts/**',
     ])
         .pipe(gulp.dest('./vendor/simple-line-icons/fonts'))
+        .pipe(gulp.dest('./dist/vendor/simple-line-icons/fonts'))
 
     gulp.src([
         './node_modules/simple-line-icons/css/**',
     ])
         .pipe(gulp.dest('./vendor/simple-line-icons/css'))
+        .pipe(gulp.dest('./dist/vendor/simple-line-icons/css'))
+
+    gulp.src([
+        './vendor/cookieconsent/**',
+    ])
+        .pipe(gulp.dest('./dist/vendor/cookieconsent'))
+
+    gulp.src([
+        './vendor/font-awesome/**',
+    ])
+        .pipe(gulp.dest('./dist/vendor/font-awesome'))
+
+    gulp.src([
+        './vendor/font-mfizz/**',
+    ])
+        .pipe(gulp.dest('./dist/vendor/font-mfizz'))
+
+    gulp.src([
+        './vendor/jquery-easing/**',
+    ])
+        .pipe(gulp.dest('./dist/vendor/jquery-easing'))
 
 });
 
@@ -104,6 +130,7 @@ gulp.task('css:minify', ['css:compile'], function () {
             suffix: '.min'
         }))
         .pipe(gulp.dest('./css'))
+        .pipe(gulp.dest('./dist/css'))
         .pipe(browserSync.stream());
 });
 
@@ -121,6 +148,7 @@ gulp.task('js:minify', function () {
             suffix: '.min'
         }))
         .pipe(gulp.dest('./js'))
+        .pipe(gulp.dest('./dist/js'))
         .pipe(browserSync.stream());
 });
 
@@ -134,9 +162,14 @@ gulp.task('html', function () {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('img', function () {
+    return gulp.src('img/**')
+        .pipe(gulp.dest('dist/img'));
+});
+
 
 // Default task
-gulp.task('default', ['css', 'js', 'vendor', 'html']);
+gulp.task('default', ['css', 'js', 'vendor', 'html', 'img']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function () {
