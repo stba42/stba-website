@@ -46,6 +46,7 @@
     "gulp-uglify": "3.0.0",
     "gulp-util": "^3.0.8",
     "minimist": "^1.2.0",
+    "travis-ci-cloudfront-invalidation": "^1.1.0",
     "vinyl-ftp": "^0.6.1"
   }
 }

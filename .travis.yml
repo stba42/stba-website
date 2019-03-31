@@ -1,21 +1,29 @@
 sudo: false
 language: node_js
+env:
+  global:
+  - AWS_ACCESS_KEY=AKIAJU3BNJV6XOYGXACA
+  - AWS_CLOUDFRONT_DIST_ID=E2QWGBURFE188V
+  - secure: 0XEEwi3OCecCxM8XmDX2bAXBpp025sfHr0LaGyVwhNCpvOIA77jMFV2dgib3si6JheUOnDu1EwnfbrVekyrzHPLFMGqAilZsbi5JaZsDUIZqVtJNDR1MVoN99yYozsVUO4itk7QKFiWgvTFPSey6FTooAIIjrvqNDWvBMK2iGIwByS0Pev96Cu1aJWuVs9KQRaw/4RRx8WaQ+PwO3nyN/QT1I+sTqYiQxxoZooo0b1PruKQH8ol1z/Qrt9xIuDQbhOVvdLmoZvkhF3XR6eoL9J30oJhptK5FmNFViKvuD5y10v5mwmd3nazI7QUk2X00fGJygn2r83PGskHJnZlOm8mYbIWY7e1m7PUp1gs/zltwIAGS1pkxF8ghPRtLGJMxTR4k/Gpc8TEy2RpJI/UQKTjFQFONx00Cgxk72+7xwYbhc8UKUWoI0IUa4lJd3rxT2UPGXVUzz2BMZNBi60JMh5X+Shf513IXCqgB5bN9PwyqhLomqyfdKkdHbHIjP2XjD8jYu6rd7fmsg/Xo/uHl8T0hkyDagl8kjNxOHz+cV0LvSzbPBJ3lRE5oYkUqd5/hRhQ9k5X8TyrX8Y6V6VleG3Z3nwX/DC4p3kgczBvwp+cMApvwgAFy4VHusHzUixGxedHxwMtxolefvBYjFxsR3QBFRAoHP/Ld+3vsoQC81IM=
 node_js:
 - '10'
 install: npm install
 script:
 - npm test
 - npm run build
+- npm install -g travis-ci-cloudfront-invalidation
 after_success:
 - test $TRAVIS_BRANCH = "master"
 deploy:
   skip_cleanup: true
-  region: 'eu-west-1'
+  region: eu-west-1
   provider: s3
   access_key_id: AKIAJU3BNJV6XOYGXACA
   secret_access_key:
     secure: WGmwMneGPaP7N1EI9vzsdNahzvEMXs73QLlUrf1mGWCwxlaceB1VE5fKc9ErrBU3MGhSLUG23+rkoJPpaM6Ff17a84tBpSoEn/nwioKkYj3DxiXU6UgAS/70aah9uqgsXppBMq6PMXuQEeOoVplFgYVzSEVcIoTeD1sL3Jvk6qes7/5nXgdJVtW5cI3knoJUfhAzvhXOG+tJm0BKCGFsADL+YzoHNs8GmlD73/wAUzBoEaoxQ8v+b8MLW8t87B9Y9SMI68AdetRcCBP0K+mkeKIH4E4Xy8TePiG3cB19uYDBUnEC3go4m50fdr6ZTGdft9s8BD7eytMu0A1JmEsbTECqRVZSKTYsSIUObYC3jqj+Sd6y7v0ZwWRCtU4j80SOEc5o49SRhQRhNHWoqKa5/6EQstAwfdBy9OPg7eovx2tKXggzp1oWBXWkiWWvU4cM+6O/n0F5YExDmCqoecLVnqm1X8uKPQd7RTwNQfuMN9SfsnZ52EKFWyRT+qESUOYc2jZeBdxiIcWvzGnpwQ+VD5WkeLBEhUltdRdrZDBUdksyngEl0Albo6Ku+U4s9o/GvDXaVc84F85K4H4ewdHmioAs1mEbiiuWNdiLDfGDvzIQmdBL8dUoJ9dXO0nFwkGjk2jAS4OUyiYydSzJZGYgu/ldSxKnYTm/vwtcSwE5jDA=
-  bucket: 'stefanbaust-page'
+  bucket: stefanbaust-page
   local-dir: dist
   on:
     repo: stba42/stba-website
+after_deploy:
+- travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY -s $AWS_SECRET_KEY -c $AWS_CLOUDFRONT_DIST_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST -o 'master,stage'
