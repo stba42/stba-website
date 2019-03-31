@@ -12,6 +12,10 @@ var gutil = require('gulp-util');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
 
+var ga = require('gulp-ga');
+
+var removeHtmlComments = require('gulp-remove-html-comments');
+
 // Set the banner content
 var banner = ['/*!\n',
     ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
@@ -123,8 +127,16 @@ gulp.task('js:minify', function () {
 // JS
 gulp.task('js', ['js:minify']);
 
+gulp.task('html', function () {
+    return gulp.src('*.html')
+        .pipe(removeHtmlComments())
+        .pipe(ga({url: 'www.stefanbaust.de', uid: 'UA-63317853-15', anonymizeIp: true}))
+        .pipe(gulp.dest('dist'));
+});
+
+
 // Default task
-gulp.task('default', ['css', 'js', 'vendor']);
+gulp.task('default', ['css', 'js', 'vendor', 'html']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function () {
@@ -141,20 +153,4 @@ gulp.task('dev', ['css', 'js', 'browserSync'], function () {
     gulp.watch('./scss/*.scss', ['css']);
     gulp.watch('./js/*.js', ['js']);
     gulp.watch('./**/*.html', browserSync.reload);
-});
-
-gulp.task('deploy', function () {
-    var remotePath = '/';
-    var conn = ftp.create({
-        host: 'esm19.siteground.biz',
-        user: args.user,
-        password: args.password,
-        log: gutil.log,
-        parallel: 5,
-        maxConnections: 5,
-        secure: true,
-    });
-    gulp.src(['**/**.*', '!./node_modules/**'])
-        .pipe(conn.newer(remotePath))
-        .pipe(conn.dest(remotePath));
 });
