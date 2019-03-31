@@ -15,7 +15,7 @@ deploy:
   access_key_id: AKIAJU3BNJV6XOYGXACA
   secret_access_key:
     secure: WGmwMneGPaP7N1EI9vzsdNahzvEMXs73QLlUrf1mGWCwxlaceB1VE5fKc9ErrBU3MGhSLUG23+rkoJPpaM6Ff17a84tBpSoEn/nwioKkYj3DxiXU6UgAS/70aah9uqgsXppBMq6PMXuQEeOoVplFgYVzSEVcIoTeD1sL3Jvk6qes7/5nXgdJVtW5cI3knoJUfhAzvhXOG+tJm0BKCGFsADL+YzoHNs8GmlD73/wAUzBoEaoxQ8v+b8MLW8t87B9Y9SMI68AdetRcCBP0K+mkeKIH4E4Xy8TePiG3cB19uYDBUnEC3go4m50fdr6ZTGdft9s8BD7eytMu0A1JmEsbTECqRVZSKTYsSIUObYC3jqj+Sd6y7v0ZwWRCtU4j80SOEc5o49SRhQRhNHWoqKa5/6EQstAwfdBy9OPg7eovx2tKXggzp1oWBXWkiWWvU4cM+6O/n0F5YExDmCqoecLVnqm1X8uKPQd7RTwNQfuMN9SfsnZ52EKFWyRT+qESUOYc2jZeBdxiIcWvzGnpwQ+VD5WkeLBEhUltdRdrZDBUdksyngEl0Albo6Ku+U4s9o/GvDXaVc84F85K4H4ewdHmioAs1mEbiiuWNdiLDfGDvzIQmdBL8dUoJ9dXO0nFwkGjk2jAS4OUyiYydSzJZGYgu/ldSxKnYTm/vwtcSwE5jDA=
-  bucket: 'arn:aws:s3:::stefanbaust-page'
+  bucket: 'stefanbaust-page'
   local-dir: dist
   on:
     repo: stba42/stba-website
