@@ -9,6 +9,7 @@ script:
 after_success:
 - test $TRAVIS_BRANCH = "master"
 deploy:
+  skip_cleanup: true
   provider: s3
   access_key_id: AKIAJU3BNJV6XOYGXACA
   secret_access_key:
