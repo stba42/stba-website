@@ -148,6 +148,10 @@ gulp.task('browserSync', function () {
     });
 });
 
+gulp.task('deploy', function () {
+    console.log('deploy todo');
+});
+
 // Dev task
 gulp.task('dev', ['css', 'js', 'browserSync'], function () {
     gulp.watch('./scss/*.scss', ['css']);
